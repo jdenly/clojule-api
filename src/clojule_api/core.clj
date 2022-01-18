@@ -133,6 +133,6 @@
 (defn roll-again? [d]
   "Should the AI roll again? Takes into account remaining dice, score and score gap with others."
   (cond
-    (= 6 (count (:dice d))) true
+    (> (count (:dice d)) 2) true
     (and (> (:max-score d) 9999) (not= (:max-score d) (:score d))) true
     :else false))
