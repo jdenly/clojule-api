@@ -141,8 +141,8 @@
   (testing "If another player is going to win this round, roll again, unless the max score is mine."
     (is (true? (roll-again? {:score 0 :dice '(2 3) :max-score 10000})))
     (is (true? (roll-again? {:score 0 :dice '(2 3) :max-score 10001})))
-    (is (false? (roll-again? {:score 10001 :dice '(2 3) :max-score 10001})))))
+    (is (false? (roll-again? {:score 10001 :dice '(2 3) :max-score 10001}))))
   (testing "If I have 3 or dice left, roll again."
     (is (true? (roll-again? {:score 0 :dice '(2 3 4) :max-score 0})))
     (is (true? (roll-again? {:score 0 :dice '(2 2 3 4) :max-score 0})))
-    (is (false? (roll-again? {:score 0 :dice '(2 2) :max-score 0}))))
+    (is (false? (roll-again? {:score 0 :dice '(2 2) :max-score 0})))))

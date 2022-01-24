@@ -12,13 +12,21 @@
    :body (json/write-str (core/score-dice (:json-params request)))
    :headers {"Content-Type" "application/json"}})
 
+(defn roll-dice
+  [request]
+  {:status 200
+   :body (json/write-str (core/roll-dice! (Integer/parseInt (:n (:query-params request)))))
+   :headers {"Content-Type" "application/json"}})
+
 ;; Defines "/" and "/about" routes with their associated :get handlers.
 ;; The interceptors defined after the verb map (e.g., {:get home-page}
 ;; apply to / and its children (/about).
 (def common-interceptors [(body-params/body-params) http/html-body])
 
 ;; Tabular routes
-(def routes #{["/score-dice" :post (conj common-interceptors `score-dice)]})
+(def routes
+  #{["/score-dice" :post (conj common-interceptors `score-dice)]
+    ["/roll-dice" :get (conj common-interceptors `roll-dice)]})
 
 ;; Map-based routes
 ;(def routes `{"/" {:interceptors [(body-params/body-params) http/html-body]
